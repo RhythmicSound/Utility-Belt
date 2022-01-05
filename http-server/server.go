@@ -16,8 +16,12 @@ func New(port string, mux *http.ServeMux) *http.Server {
 		mux = http.NewServeMux()
 	}
 	mux.HandleFunc("/_healthcheck", HealthcheckHandler)
+
+	if port == "" {
+		port = "8080"
+	}
 	return &http.Server{
-		Addr:              port,
+		Addr:              fmt.Sprintf(":%s", port),
 		Handler:           mux,
 		ReadTimeout:       2 * time.Second,
 		ReadHeaderTimeout: 1 * time.Second,

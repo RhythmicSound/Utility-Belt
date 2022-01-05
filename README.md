@@ -9,8 +9,6 @@ Other open source libraries are used within the functions. For stability, some a
 ## Organisation
 Functions are grouped and organised within packages of relavent topics for easier use and more appropriate self documenting naming conventions. 
 
-To avoid large downloads on go get, single of tightly grouped functions per package file is used. 
-
 ## Depreciation and modificaction process
 Once published in a release, the function's API is fixed for that major release and can only be depreciated or modified in the next major release. 
 
