@@ -21,3 +21,9 @@ Depreciation log `warnings` should also be added to the previous release via std
 Developers should check for this warnings when updating to a new major version.
 
 > There will be some movement of functions between packages until the release of major version 1.0.0
+
+## ToDo
+
+- [ ] Add tests in each package
+- [ ] Fix directory structure for v1.0.0
+- [ ] Alpha release

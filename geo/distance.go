@@ -45,6 +45,7 @@ func LonLatDistance(lat1 float64, lng1 float64, lat2 float64, lng2 float64, unit
 		dist = dist * 0.8684
 	case "M":
 		//already in miles
+		break
 	default:
 		return 0, fmt.Errorf("Unit '%s' not recognised in LonLatDistance func", unit)
 
