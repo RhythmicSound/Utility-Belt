@@ -4,6 +4,7 @@ import (
 	"crypto/tls"
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -39,13 +40,20 @@ func New(port string, mux *http.ServeMux) *http.Server {
 //their use case
 //
 //Checks URL query strings first and will return that value even if both are present.
+//
+//Both header and query string are checked as case insensitive.
+//
+//The first value found is returned.
 func ValueFromReqQueryOrHeader(key string, req *http.Request) (string, error) {
-	q := req.URL.Query().Get(key)
-	if q != "" {
-		return q, nil
+	//If not found canonicalize casing and check again
+	key = strings.ToLower(key)
+	for k, v := range req.URL.Query() {
+		if strings.ToLower(k) == key {
+			return v[0], nil
+		}
 	}
-
-	q = req.Header.Get(key)
+	//otherwise check request header
+	q := req.Header.Get(key)
 	if q != "" {
 		return q, nil
 	}
